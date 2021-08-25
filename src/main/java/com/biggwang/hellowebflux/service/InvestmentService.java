@@ -1,5 +1,6 @@
 package com.biggwang.hellowebflux.service;
 
+import com.biggwang.hellowebflux.dto.InvestmentDto;
 import com.biggwang.hellowebflux.entity.InvestmentEntity;
 import com.biggwang.hellowebflux.repository.InvestmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,15 @@ public class InvestmentService {
                 InvestmentEntity.builder()
                         .id(userId)
                         .title("hi:" + LocalDateTime.now())
+                        .build()
+        );
+    }
+
+    public Mono<InvestmentEntity> update(InvestmentDto investmentDto) {
+        return investmentRepository.save(
+                InvestmentEntity.builder()
+                        .id(investmentDto.getUserId())
+                        .title(investmentDto.getTitle())
                         .build()
         );
     }
